@@ -48,13 +48,13 @@ def hello():
     print("Writing tweet objects to JSON please wait...")
     count = 0
     tweets = []
+    new_tweet = ""
     for tweet in alltweets:
         count +=1
         print("Tweets downloaded so far: ", count)
         #json.dump(status._json, file, sort_keys=True, indent=4)
         #tweet = json.dumps(status._json)
         #new_tweet = [tweet['user']['name'], tweet['geo']['coordinates'], tweet['text']]
-        new_tweet = ""
         #new_tweet.append(tweet['user']['name'])
         try:
             #new_tweet.append(tweet['geo']['coordinates'])
