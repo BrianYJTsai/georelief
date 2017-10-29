@@ -59,6 +59,7 @@ def hello():
         try:
             new_tweet.append(tweet['geo']['coordinates'])
         except:
+            pass
             #new_tweet.append(["None", "None"])
         #new_tweet.append(tweet['geo']['coordinates'])
         #new_tweet.append(tweet['text'])
