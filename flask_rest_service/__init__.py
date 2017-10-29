@@ -37,7 +37,7 @@ import flask_rest_service.resources
 '''
 
 @app.route('/')
-def hello(search):
+def hello():
 	#app = Flask(__name__,static_url_path='')
 	#@app.route(./)
 
@@ -77,7 +77,7 @@ def hello(search):
     #file = open("tweet.json", "w", encoding="utf8")
     print("Writing tweet objects to JSON please wait...")
     count = 0
-    tweets = [];
+    tweets = []
     for tweet in alltweets:
         count +=1
         print("Tweets downloaded so far: ", count)
@@ -92,7 +92,7 @@ def hello(search):
             new_tweet.append(["None", "None"])
         #new_tweet.append(tweet['geo']['coordinates'])
         new_tweet.append(tweet['text'])
-        tweets.append(new_tweet);
+        tweets.append(new_tweet)
 
 
     #close the file
@@ -107,7 +107,7 @@ def hello(search):
     #input.close()
     #return text
 
-    return tweets
+    return str(tweets)
 
 if __name__ == '__main__':
 	app.run(debug=True)
