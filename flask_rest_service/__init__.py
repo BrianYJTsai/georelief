@@ -64,7 +64,7 @@ def hello():
             #new_tweet.append(["None", "None"])
         #new_tweet.append(tweet['geo']['coordinates'])
         #new_tweet.append(tweet['text'])
-        new_tweet+="<br>"
+        #new_tweet+="<br>"
         #new_tweet.append("THIS IS A TEST")
         #tweets.append(new_tweet)
 
