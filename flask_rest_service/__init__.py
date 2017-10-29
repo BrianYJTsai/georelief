@@ -62,7 +62,7 @@ def hello():
             new_tweet+=str(tweet['geo']['coordinates'][0])
             new_tweet+=" "
             new_tweet+=str(tweet['geo']['coordinates'][1])
-            new_tweet+="<br>"
+            new_tweet+=" "
         except:
             pass
             #new_tweet.append(["None", "None"])
