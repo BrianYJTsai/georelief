@@ -58,10 +58,12 @@ def hello():
         #new_tweet.append(tweet['user']['name'])
         try:
             #new_tweet.append(tweet['geo']['coordinates'])
+            new_tweet+=tweet['user']['name']
+            new_tweet+="%"
             new_tweet+=str(tweet['geo']['coordinates'][0])
-            new_tweet+=" "
+            new_tweet+="%"
             new_tweet+=str(tweet['geo']['coordinates'][1])
-            new_tweet+=" "
+            new_tweet+="%"
         except:
             pass
             #new_tweet.append(["None", "None"])
