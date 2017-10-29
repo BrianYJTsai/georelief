@@ -38,43 +38,13 @@ import flask_rest_service.resources
 
 @app.route('/')
 def hello():
-	#app = Flask(__name__,static_url_path='')
-	#@app.route(./)
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth)
 
-    # initialize a list to hold all the tweepy Tweets
-    #alltweets = []
-
-    # make initial request for most recent tweets (200 is the maximum allowed count)
-    #new_tweets = api.user_timeline(screen_name=screen_name, count=10)
-
-    # save most recent tweets
-    #alltweets.extend(new_tweets)
-
-    # save the id of the oldest tweet less one
-    #oldest = alltweets[-1].id - 1
-    '''
-    # keep grabbing tweets until there are no tweets left to grab
-    while (len(alltweets) < 100):
-        # all subsequent requests use the max_id param to prevent duplicates
-        new_tweets = api.user_timeline(screen_name=screen_name, count=10, max_id=oldest)
-
-        # save most recent tweets
-        alltweets.extend(new_tweets)
-
-        # update the id of the oldest tweet less one
-        oldest = alltweets[-1].id - 1
-
-        print("...%s tweets downloaded so far" % (len(alltweets)))
-    '''
 
     alltweets = [status._json for status in tweepy.Cursor(api.search, q="#georelief", geocode="30.303092,-97.6648322,500mi", lang="en").items(limit = 100)]
-
-    # write tweet objects to JSON
-    #file = open("tweet.json", "w", encoding="utf8")
     print("Writing tweet objects to JSON please wait...")
     count = 0
     tweets = []
