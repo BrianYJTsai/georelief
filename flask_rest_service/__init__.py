@@ -68,7 +68,7 @@ def hello():
 
     text = ""
     for element in tweets:
-        text += element
+        text += str(element)
     #close the file
     #print("Done")
 
