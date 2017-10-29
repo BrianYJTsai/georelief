@@ -60,9 +60,11 @@ def hello():
             #new_tweet.append(tweet['geo']['coordinates'])
             test = tweet['geo']['coordinates'][0]
             new_tweet+=tweet['user']['name'] + "%"
-            new_tweet+=str(tweet['geo']['coordinates'][0])
-            new_tweet+="%"
             new_tweet+=str("@" + tweet['user']['screen_name'])
+            new_tweet+="%"
+            new_tweet+=str(tweet['text'])
+            new_tweet+="%"
+            new_tweet+=str(tweet['geo']['coordinates'][0])
             new_tweet+="%"
             new_tweet+=str(tweet['geo']['coordinates'][1])
             new_tweet+="%"
