@@ -55,13 +55,13 @@ def hello():
         #tweet = json.dumps(status._json)
         #new_tweet = [tweet['user']['name'], tweet['geo']['coordinates'], tweet['text']]
         new_tweet = []
-        new_tweet.append(tweet['user']['name'])
+        #new_tweet.append(tweet['user']['name'])
         try:
             new_tweet.append(tweet['geo']['coordinates'])
         except:
-            new_tweet.append(["None", "None"])
+            #new_tweet.append(["None", "None"])
         #new_tweet.append(tweet['geo']['coordinates'])
-        new_tweet.append(tweet['text'])
+        #new_tweet.append(tweet['text'])
         new_tweet.append("<br>")
         #new_tweet.append("THIS IS A TEST")
         tweets.append(new_tweet)
