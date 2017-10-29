@@ -61,7 +61,7 @@ def hello():
         except:
             new_tweet.append(["None", "None"])
         #new_tweet.append(tweet['geo']['coordinates'])
-        new_tweet.append(tweet['text'] + "\n")
+        new_tweet.append(tweet['text'])
         #new_tweet.append("THIS IS A TEST")
         tweets.append(new_tweet)
 
@@ -78,7 +78,7 @@ def hello():
     #input.close()
     #return text
     tweets = [[tweets[line:line + 3]] for line in range(0, len(tweets), 3)]
-    return '\n'.join(str(line) for line in tweets)
+    return '<br>'.join(str(line) for line in tweets)
     #return str(tweets)
 if __name__ == '__main__':
 	app.run(debug=True)
