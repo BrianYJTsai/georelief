@@ -1,10 +1,3 @@
-import os
-from flask import Flask, request
-from flask.ext import restful
-from flask.ext.pymongo import PyMongo
-from flask import make_response
-from bson.json_util import dumps
-
 import tweepy
 import json
 
@@ -15,32 +8,10 @@ access_key = "924361173214089217-bEHCdGreBj6ndEutzV9nkIFAwLQH9uw"
 access_secret = "pjIyb8Kqpr6dv8yaudMYloNtrLtSfr0TCC30asAOSAlq7"
 
 
-#MONGO_URL = os.environ.get('MONGO_URL')
-#if not MONGO_URL:
-#    MONGO_URL = "mongodb://localhost:27017/rest";
+def get_all_tweets():
+    # Twitter only allows access to a users most recent 3240 tweets with this method
 
-app = Flask(__name__)
-
-#app.config['MONGO_URI'] = MONGO_URL
-#mongo = PyMongo(app)
-'''
-def output_json(obj, code, headers=None):
-    resp = make_response(dumps(obj), code)
-    resp.headers.extend(headers or {})
-    return resp
-
-DEFAULT_REPRESENTATIONS = {'application/json': output_json}
-api = restful.Api(app)
-api.representations = DEFAULT_REPRESENTATIONS
-s
-import flask_rest_service.resources
-'''
-
-@app.route('/')
-def hello(search):
-	#app = Flask(__name__,static_url_path='')
-	#@app.route(./)
-
+    # authorize twitter, initialize tweepy
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth)
@@ -75,9 +46,9 @@ def hello(search):
 
     # write tweet objects to JSON
     #file = open("tweet.json", "w", encoding="utf8")
+    file = open("tweetOutput.txt", "w", encoding="utf8")
     print("Writing tweet objects to JSON please wait...")
     count = 0
-    tweets = [];
     for tweet in alltweets:
         count +=1
         print("Tweets downloaded so far: ", count)
@@ -92,22 +63,26 @@ def hello(search):
             new_tweet.append(["None", "None"])
         #new_tweet.append(tweet['geo']['coordinates'])
         new_tweet.append(tweet['text'])
-        tweets.append(new_tweet);
+        file.write(str(new_tweet))
+        file.write("\n")
+
+    # close the file
+    print("Done")
+    file.close()
 
 
-    #close the file
-    #print("Done")
+def parse_all_tweets():
 
-    #input = open("tweetOutput.txt", "r")
-    #text = []
-    #for line in input:
-    #    text.append(str(line))
-    #    print(str(line))
-    #text = '\n'.join(text)
-    #input.close()
-    #return text
+    output = open("tweetOutput.txt", "w", encoding="utf8")
 
-    return tweets
+    with open('tweet.json') as json_data:
+        new_tweet = json.load(json_data)
+        tweet = [new_tweet['user']['name'], new_tweet['geo']['coordinates'], new_tweet['text']]
+        output.write(str(tweet))
+
+    output.close()
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    # pass in the username of the account you want to download
+    get_all_tweets()
+    #parse_all_tweets()
